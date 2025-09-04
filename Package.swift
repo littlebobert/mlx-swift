@@ -142,9 +142,6 @@ let package = Package(
             ],
             swiftSettings: [
                 .enableExperimentalFeature("StrictConcurrency")
-            ],
-            linkerSettings: [
-                .unsafeFlags(["-Wl,-hidden-lmlx"]),  // Hide all symbols by default
             ]
         ),
         .target(
