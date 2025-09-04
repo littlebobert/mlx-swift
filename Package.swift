@@ -15,13 +15,13 @@ let package = Package(
 
     products: [
         // main targets
-        .library(name: "MLX", targets: ["MLX"]),
-        .library(name: "MLXRandom", targets: ["MLXRandom"]),
-        .library(name: "MLXNN", targets: ["MLXNN"]),
-        .library(name: "MLXOptimizers", targets: ["MLXOptimizers"]),
-        .library(name: "MLXFFT", targets: ["MLXFFT"]),
-        .library(name: "MLXLinalg", targets: ["MLXLinalg"]),
-        .library(name: "MLXFast", targets: ["MLXFast"]),
+        .library(name: "MLX", type: .dynamic, targets: ["MLX"]),
+        .library(name: "MLXRandom", type: .dynamic, targets: ["MLXRandom"]),
+        .library(name: "MLXNN", type: .dynamic, targets: ["MLXNN"]),
+        .library(name: "MLXOptimizers", type: .dynamic, targets: ["MLXOptimizers"]),
+        .library(name: "MLXFFT", type: .dynamic, targets: ["MLXFFT"]),
+        .library(name: "MLXLinalg", type: .dynamic, targets: ["MLXLinalg"]),
+        .library(name: "MLXFast", type: .dynamic, targets: ["MLXFast"]),
     ],
     dependencies: [
         // for Complex type
@@ -102,7 +102,6 @@ let package = Package(
             cSettings: [
                 .headerSearchPath("mlx"),
                 .headerSearchPath("include/mlx-c"),
-                .unsafeFlags(["-fvisibility=hidden"]),
             ],
             cxxSettings: [
                 .headerSearchPath("mlx"),
@@ -116,8 +115,6 @@ let package = Package(
                 .define("_METAL_"),
                 .define("SWIFTPM_BUNDLE", to: "\"mlx-swift_Cmlx\""),
                 .define("METAL_PATH", to: "\"default.metallib\""),
-                
-                .unsafeFlags(["-fvisibility=hidden", "-fvisibility-inlines-hidden"]),
             ],
             linkerSettings: [
                 .linkedFramework("Foundation"),
