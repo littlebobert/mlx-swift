@@ -134,8 +134,17 @@ let package = Package(
                 "Cmlx",
                 .product(name: "Numerics", package: "swift-numerics"),
             ],
+            cSettings: [
+                .unsafeFlags(["-fvisibility=hidden"]),
+            ],
+            cxxSettings: [
+                .unsafeFlags(["-fvisibility=hidden", "-fvisibility-inlines-hidden"]),
+            ],
             swiftSettings: [
                 .enableExperimentalFeature("StrictConcurrency")
+            ],
+            linkerSettings: [
+                .unsafeFlags(["-Wl,-hidden-lmlx"]),  // Hide all symbols by default
             ]
         ),
         .target(
