@@ -102,8 +102,8 @@ let package = Package(
             cSettings: [
                 .headerSearchPath("mlx"),
                 .headerSearchPath("include/mlx-c"),
+                .unsafeFlags(["-fvisibility=hidden"]),
             ],
-
             cxxSettings: [
                 .headerSearchPath("mlx"),
                 .headerSearchPath("include/mlx-c"),
@@ -116,6 +116,8 @@ let package = Package(
                 .define("_METAL_"),
                 .define("SWIFTPM_BUNDLE", to: "\"mlx-swift_Cmlx\""),
                 .define("METAL_PATH", to: "\"default.metallib\""),
+                
+                .unsafeFlags(["-fvisibility=hidden", "-fvisibility-inlines-hidden"]),
             ],
             linkerSettings: [
                 .linkedFramework("Foundation"),
@@ -133,12 +135,6 @@ let package = Package(
             dependencies: [
                 "Cmlx",
                 .product(name: "Numerics", package: "swift-numerics"),
-            ],
-            cSettings: [
-                .unsafeFlags(["-fvisibility=hidden"]),
-            ],
-            cxxSettings: [
-                .unsafeFlags(["-fvisibility=hidden", "-fvisibility-inlines-hidden"]),
             ],
             swiftSettings: [
                 .enableExperimentalFeature("StrictConcurrency")
