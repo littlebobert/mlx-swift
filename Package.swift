@@ -15,13 +15,13 @@ let package = Package(
 
     products: [
         // main targets
-        .library(name: "MLXLib", type: .dynamic, targets: ["MLX"]),
-        .library(name: "MLXRandomLib", type: .dynamic, targets: ["MLXRandom"]),
-        .library(name: "MLXNNLib", type: .dynamic, targets: ["MLXNN"]),
-        .library(name: "MLXOptimizersLib", type: .dynamic, targets: ["MLXOptimizers"]),
-        .library(name: "MLXFFTLib", type: .dynamic, targets: ["MLXFFT"]),
-        .library(name: "MLXLinalgLib", type: .dynamic, targets: ["MLXLinalg"]),
-        .library(name: "MLXFastLib", type: .dynamic, targets: ["MLXFast"]),
+        .library(name: "MLX", targets: ["MLX"]),
+        .library(name: "MLXRandom", targets: ["MLXRandom"]),
+        .library(name: "MLXNN", targets: ["MLXNN"]),
+        .library(name: "MLXOptimizers", targets: ["MLXOptimizers"]),
+        .library(name: "MLXFFT", targets: ["MLXFFT"]),
+        .library(name: "MLXLinalg", targets: ["MLXLinalg"]),
+        .library(name: "MLXFast", targets: ["MLXFast"]),
     ],
     dependencies: [
         // for Complex type
@@ -36,9 +36,6 @@ let package = Package(
 
                 // vendored library, include header only
                 "json",
-
-                // vendored library, do not include driver
-                "gguf-tools/gguf-tools.c",
 
                 // vendored library
                 "fmt/test",
@@ -103,12 +100,12 @@ let package = Package(
                 .headerSearchPath("mlx"),
                 .headerSearchPath("include/mlx-c"),
             ],
+
             cxxSettings: [
                 .headerSearchPath("mlx"),
                 .headerSearchPath("include/mlx-c"),
                 .headerSearchPath("metal-cpp"),
                 .headerSearchPath("json/single_include/nlohmann"),
-                .headerSearchPath("gguf-tools"),
                 .headerSearchPath("fmt/include"),
 
                 .define("ACCELERATE_NEW_LAPACK"),
